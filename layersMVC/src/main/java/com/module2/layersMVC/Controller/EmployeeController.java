@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping (path = "/employees")
@@ -51,25 +52,29 @@ public class EmployeeController {
         return employeeService.createNewEmployee(inputEmployee);
     }
 
-    @PutMapping
-    public String updateEmployeeId(){
+    @PutMapping(path = "/{employeeId}")
+   public EmployeeDto updateEmployeeById(@RequestBody EmployeeDto employeeDto,@PathVariable Long employeeId){
 
-        return "employee id update successful by put ";
-
+        return employeeService.updateEmployeeById(employeeId,employeeDto);
     }
 
-    @DeleteMapping
-    public String deleteEmployee(){
 
-        return "employee deleted successful by delete  ";
-
+    @DeleteMapping(path = "/{employeeId}")
+    public boolean deleteEmployeeById(@PathVariable Long employeeId){
+         return  employeeService.deleteEmployeeById(employeeId);
     }
 
-    @PatchMapping
-    public String patchEmployee(){
 
-        return "message by patch ";
+    @PatchMapping (path = "/{employeeId}")
+//    public String patchEmployee(){
+//
+//        return "message by patch ";
+//
+//    }
 
+    public EmployeeDto updatePartialEmployeeById(@RequestBody Map<String,Object>updates,
+                                                   @PathVariable long employeeId){
+        return  employeeService.UpdatePartialEmployeeTd(employeeId,updates);
     }
 
 //@RequestBody
