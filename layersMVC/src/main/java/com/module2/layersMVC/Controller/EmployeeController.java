@@ -18,11 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping (path = "/employees")
 public class EmployeeController {
-//    @GetMapping(path = "/getSecretMessage")
-//    public String getMySuperSecretMessage(){
-//
-//        return "Secret message: asdfal@#DASDJNJ";
-//    }
+
 
   public final EmployeeService employeeService;
 
@@ -38,25 +34,19 @@ public class EmployeeController {
   return employeeDto.map
           (employeeDto1 -> ResponseEntity.ok(employeeDto1))
           .orElseThrow(()-> new RuntimeException("employee not found with id :"+ id));
-    // return ResponseEntity.ok(employeeDto);
-        // return new EmployeeDto(id,"Monu","monu@gmail.com",20,LocalDate.of(2023,8,21 ),true);
+
     }
 
 
     @GetMapping
- //   public String
+
    public ResponseEntity< List<EmployeeDto>> getAllEmployeed(@RequestParam (required = false)Integer age,
                                                @RequestParam (required = false)String name){
-        return ResponseEntity.ok(employeeService.getAlltheEmploye());
+        return ResponseEntity.ok(employeeService.getAlltheEmployee());
     }
 
     @PostMapping
 
-//    public String postmap(){
-//
-//        return "hii from post  ";
-//
-//    }
 
     public  ResponseEntity<EmployeeDto> createNewEmployee(@RequestBody @Valid EmployeeDto inputEmployee){
         EmployeeDto savedEmployee = employeeService.createNewEmployee(inputEmployee);

@@ -1,8 +1,10 @@
 package com.module2.layersMVC.advices;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Data
 public class ApiResponse<T> {
     private LocalDateTime timeStatus;
     private T data;
